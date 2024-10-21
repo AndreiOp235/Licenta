@@ -1,9 +1,3 @@
-/*
-  Rui Santos & Sara Santos - Random Nerd Tutorials
-  Complete project details at https://RandomNerdTutorials.com/esp-now-esp32-arduino-ide/
-  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files.
-  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 #include <esp_now.h>
 #include <WiFi.h>
 
@@ -24,27 +18,39 @@ struct_message myData;
 
 esp_now_peer_info_t peerInfo;
 
+// Define the DEBUG macro
+#define DEBUG 0  // Set to 0 to disable debugging
+
+#if DEBUG
+  #define DEBUG_PRINT(x) Serial.print(x)
+  #define DEBUG_PRINTLN(x) Serial.println(x)
+  #define DEBUG_BEGIN(x) Serial.begin(x)
+#else
+  #define DEBUG_PRINT(x)
+  #define DEBUG_PRINTLN(x)
+  #define DEBUG_BEGIN(x)
+#endif
+
 // callback when data is sent
 void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
-  Serial.print("\r\nLast Packet Send Status:\t");
-  Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
+  DEBUG_PRINT("\r\nLast Packet Send Status:\t");
+  DEBUG_PRINTLN(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
  
 void setup() {
-  // Init Serial Monitor
-  Serial.begin(115200);
+  // Initialize Serial Monitor based on DEBUG flag
+  DEBUG_BEGIN(115200);
  
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
 
   // Init ESP-NOW
   if (esp_now_init() != ESP_OK) {
-    Serial.println("Error initializing ESP-NOW");
+    DEBUG_PRINTLN("Error initializing ESP-NOW");
     return;
   }
 
-  // Once ESPNow is successfully Init, we will register for Send CB to
-  // get the status of Trasnmitted packet
+  // Once ESPNow is successfully initialized, register for Send Callback to get the status of transmitted packet
   esp_now_register_send_cb(OnDataSent);
   
   // Register peer
@@ -53,8 +59,8 @@ void setup() {
   peerInfo.encrypt = false;
   
   // Add peer        
-  if (esp_now_add_peer(&peerInfo) != ESP_OK){
-    Serial.println("Failed to add peer");
+  if (esp_now_add_peer(&peerInfo) != ESP_OK) {
+    DEBUG_PRINTLN("Failed to add peer");
     return;
   }
 }
@@ -74,7 +80,7 @@ void loop() {
     if (!flag) {                      // Ensure we only send data once until sensor is released
       // Set values to send
       strcpy(myData.a, "THIS IS A CHAR");
-      myData.b = random(1, 20);
+      myData.b = reading;
       myData.c = 1.2;
       myData.d = false;
     
@@ -82,9 +88,9 @@ void loop() {
       esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
     
       if (result == ESP_OK) {
-        Serial.println("Sent with success");
+        DEBUG_PRINTLN("Sent with success");
       } else {
-        Serial.println("Error sending the data");
+        DEBUG_PRINTLN("Error sending the data");
       }
     
       delay(2000);       // Optional: Delay to avoid excessive repeated sends
@@ -97,4 +103,3 @@ void loop() {
     flag = false;        // Reset flag when sensor is released
   }
 }
-
