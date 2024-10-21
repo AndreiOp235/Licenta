@@ -11,8 +11,8 @@
 uint8_t newMACAddress[] = {0x32, 0xAE, 0xA4, 0x07, 0x0D, 0x66};
 
 // Replace with your network credentials
-const char* ssid     = "test";
-const char* password = "faraparola";
+const char* ssid     = "REPLACE_WITH_YOUR_SSID";
+const char* password = "REPLACE_WITH_YOUR_PASSWORD";
 
 void readMacAddress(){
   uint8_t baseMac[6];
@@ -45,6 +45,15 @@ void setup(){
   // Read the new MAC address
   Serial.print("[NEW] ESP32 Board MAC Address: ");
   readMacAddress();
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  Serial.println("Connecting to WiFi...");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println("Connected");
 }
  
 void loop(){
