@@ -58,22 +58,43 @@ void setup() {
     return;
   }
 }
- 
+
+unsigned long lastDebounceTime = 0;   // the last time the sensor reading changed
+unsigned long debounceDelay = 50;     // the debounce time; increase if necessary
+int lastReading = HIGH;               // keep track of the previous state
+bool flag = false;                    // toggle flag to prevent repeat sends
+
 void loop() {
-  // Set values to send
-  strcpy(myData.a, "THIS IS A CHAR");
-  myData.b = random(1,20);
-  myData.c = 1.2;
-  myData.d = false;
+  int reading = touchRead(4);         // Read touch sensor value
+
+  // Check if reading is stable and within threshold
+  if (reading < 50 && (millis() - lastDebounceTime) > debounceDelay) {
+    lastDebounceTime = millis();      // Reset the debounce timer
+    
+    if (!flag) {                      // Ensure we only send data once until sensor is released
+      // Set values to send
+      strcpy(myData.a, "THIS IS A CHAR");
+      myData.b = random(1, 20);
+      myData.c = 1.2;
+      myData.d = false;
+    
+      // Send message via ESP-NOW
+      esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
+    
+      if (result == ESP_OK) {
+        Serial.println("Sent with success");
+      } else {
+        Serial.println("Error sending the data");
+      }
+    
+      delay(2000);       // Optional: Delay to avoid excessive repeated sends
+      flag = true;       // Set flag to prevent repeated sending
+    }
+  }
   
-  // Send message via ESP-NOW
-  esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
-   
-  if (result == ESP_OK) {
-    Serial.println("Sent with success");
+  // Reset flag when the sensor is no longer touched
+  if (reading >= 50) {
+    flag = false;        // Reset flag when sensor is released
   }
-  else {
-    Serial.println("Error sending the data");
-  }
-  delay(2000);
 }
+

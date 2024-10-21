@@ -6,7 +6,12 @@
 */
 
 #include <esp_now.h>
+#include <esp_wifi.h>
 #include <WiFi.h>
+bool flag =false;
+
+
+uint8_t newMACAddress[] = {0x32, 0xAE, 0xA4, 0x07, 0x0D, 0x66};
 
 // Structure example to receive data
 // Must match the sender structure
@@ -34,14 +39,24 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   Serial.print("Bool: ");
   Serial.println(myData.d);
   Serial.println();
+  flag=!flag;
+  digitalWrite(4, flag);
 }
  
+
 void setup() {
+  pinMode(4, OUTPUT);
+  digitalWrite(4, flag);
   // Initialize Serial Monitor
   Serial.begin(115200);
   
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
+
+   esp_err_t err = esp_wifi_set_mac(WIFI_IF_STA, &newMACAddress[0]);
+  if (err == ESP_OK) {
+    Serial.println("Success changing Mac Address");
+  }
 
   // Init ESP-NOW
   if (esp_now_init() != ESP_OK) {
