@@ -10,7 +10,7 @@ void setup() {
   Serial.begin(115200);
   delay(1000);  // give me time to bring up serial monitor
   Serial.println("ESP32 Touch Interrupt Test");
-  touchAttachInterrupt(T7, gotTouch1, threshold);
+  touchAttachInterrupt(27, gotTouch1, threshold);
 }
 
 void loop() {

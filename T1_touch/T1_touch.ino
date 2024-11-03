@@ -3,14 +3,15 @@
 #include <FastLED.h>
 
 #define TOUCH_PIN 27          // Define the GPIO pin for touch
-#define THRESHOLD 100         // Define threshold for touch sensitivity
+#define THRESHOLD 40        // Define threshold for touch sensitivity
 #define LED_PIN 13            // Define the GPIO pin for the WS2812 LED
 #define NUM_LEDS 1            // Number of WS2812 LEDs
 
 // Define the MAC addresses for the target devices
-uint8_t target1[] = {0x88, 0x13, 0xBF, 0x0D, 0xAF, 0xCC};
-uint8_t target2[] = {0x44, 0x17, 0x93, 0x7C, 0xB2, 0xD0};
-
+uint8_t target1[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+//uint8_t target1[] = {0x88, 0x13, 0xBF, 0x0D, 0xAF, 0xCC};
+//uint8_t target1[] = {0x44, 0x17, 0x93, 0x7C, 0xB2, 0xD0};
+uint8_t target2[] = {0x24, 0x6f, 0x28, 0x95, 0xd6, 0x68};
 // Structure to hold the data to send
 typedef struct __attribute__((packed)) {
     char message[32]; // Message to send
@@ -58,7 +59,7 @@ void setup() {
 
 void loop() {
     // Check if the touch sensor is triggered and message has not been sent yet
-    if (!messageSent && touchRead(TOUCH_PIN) > THRESHOLD) {
+    if (!messageSent && touchRead(TOUCH_PIN) < THRESHOLD) {
         // Prepare the message
         strcpy(myData.message, "Touched!");
 

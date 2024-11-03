@@ -4,13 +4,13 @@
 // Callback function to handle received data
 void OnDataRecv(const esp_now_recv_info_t *info, const uint8_t *incomingData, int len) {
   // Print "S" when a message is received
-  Serial.println("S");
+  Serial.println("SOS");
 }
 
 void setup() {
   // Initialize Serial Monitor
   Serial.begin(115200);
-
+  Serial.println("start");
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
 

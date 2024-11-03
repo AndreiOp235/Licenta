@@ -1,12 +1,18 @@
 #include <ESP32Servo.h> // Correct library name for the ESP32 Servo library
 #include <WiFi.h>
 #include <esp_now.h>
+#include <FastLED.h> // Include the FastLED library
 
 // Define the servo object
 Servo myServo;
 
 // Define the pin where the servo is connected
 #define SERVO_PIN 4 // Change this to your servo's pin
+
+// Define the WS2812 LED pin and settings
+#define LED_PIN 2
+#define NUM_LEDS 1 // Change this if you have more LEDs
+CRGB leds[NUM_LEDS];
 
 // Task handle for the servo task
 TaskHandle_t servoTaskHandle = NULL;
@@ -21,11 +27,14 @@ void servoSweepTask(void *pvParameters);
 void onDataReceive(const esp_now_recv_info *info, const uint8_t *incomingData, int len) {
     // Stop the servo when a message is received
     stopServo = true; // Set the flag to stop the servo
-
-    // Notify the servo task to stop
+    leds[0] = CRGB::Red; // Set LED color to blue
+    FastLED.show(); // Update the LED
+    // Delete the servo task directly
     if (servoTaskHandle != NULL) {
-        vTaskDelete(servoTaskHandle); // Delete the servo task directly
+        vTaskDelete(servoTaskHandle); // Delete the servo task
     }
+    
+    
 }
 
 void setup() {
@@ -41,6 +50,11 @@ void setup() {
 
     // Attach the servo to the specified pin
     myServo.attach(SERVO_PIN);
+
+    // Initialize FastLED
+    FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
+    leds[0] = CRGB::Blue; // Set LED color to blue at launch
+    FastLED.show(); // Update the LED
 
     // Create the servo sweep task
     xTaskCreate(
