@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<BaseServicesSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <VirtualControllerSettings>
+    <LogToFile>true</LogToFile>
+    <LogfilePath>F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\console.log</LogfilePath>
+    <ClearLogfile>false</ClearLogfile>
+    <ClearLogfileColdStart>false</ClearLogfileColdStart>
+    <UseTerminal>false</UseTerminal>
+    <BreakColdStart>false</BreakColdStart>
+    <BreakWarmStart>false</BreakWarmStart>
+  </VirtualControllerSettings>
+</BaseServicesSettings>

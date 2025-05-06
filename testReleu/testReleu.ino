@@ -1,53 +1,64 @@
-#include <FastLED.h>
+#include <Adafruit_NeoPixel.h>
 
-#define BUTTON_PIN 2    // GPIO pin for the button
-#define RELAY_PIN  3    // GPIO pin for the relay
-#define LED_PIN    4    // GPIO pin for the WS2812B LED
-#define NUM_LEDS   1    // Number of LEDs in the strip
+#define BUTON_PIN 2   // Pinul GPIO pentru buton (ESP32-C3)
+#define RELEU_PIN  3  // Pinul GPIO pentru releu
+#define LED_PIN    4  // Pinul GPIO pentru LED-ul WS2812B
+#define NUMAR_LEDS 1  // Numărul de LED-uri în strip
+#define DEBOUNCE_MS 50  // Timp de debounce în milisecunde
 
-CRGB leds[NUM_LEDS];
+volatile bool stareReleu = false;  // Variabilă globală pentru stare releu
+volatile bool stareModificata = false;  // Flag pentru schimbare stare
+volatile unsigned long ultimulTimpApasare = 0;  // Ultimul timp de apăsare
+
+Adafruit_NeoPixel leduri(NUMAR_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+// Funcție ISR pentru întrerupere (schimbă starea releului și LED-ului)
+void IRAM_ATTR schimbareStare() {
+    unsigned long timpCurent = millis();
+    if (timpCurent - ultimulTimpApasare > DEBOUNCE_MS) {  // Aplică debounce
+        stareReleu = !stareReleu;  // Comută starea releului
+        stareModificata = true;    // Semnalizează că trebuie să actualizăm LED-ul și releul
+        ultimulTimpApasare = timpCurent;  // Actualizează ultimul timp de apăsare
+    }
+}
 
 void setup() {
-    // Initialize Serial Monitor
     Serial.begin(115200);
-    Serial.println("Button, Relay, and WS2812B LED Control Starting...");
+    Serial.println("Pornire control Buton, Releu și LED WS2812B...");
 
-    // Set up the button pin as input (external pull-down)
-    pinMode(BUTTON_PIN, INPUT);
+    pinMode(RELEU_PIN, OUTPUT);
+    digitalWrite(RELEU_PIN, LOW);  // Inițializare releu OPRIT
 
-    // Set up the relay pin as output
-    pinMode(RELAY_PIN, OUTPUT);
+    leduri.begin();
+    leduri.clear();
+    leduri.setBrightness(60);
+    leduri.show();
 
-    // Ensure the relay starts in the OFF state
-    digitalWrite(RELAY_PIN, LOW);
-
-    // Initialize the WS2812B LED
-    FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds, NUM_LEDS);
-    FastLED.clear();  // Turn off all LEDs initially
-    FastLED.show();
+    // Atașare întrerupere la buton (detectează apăsarea - rising edge)
+    pinMode(BUTON_PIN, INPUT_PULLDOWN);
+    attachInterrupt(digitalPinToInterrupt(BUTON_PIN), schimbareStare, RISING);
 }
 
 void loop() {
-    // Read the button state
-    int buttonState = digitalRead(BUTTON_PIN);
+    if (stareModificata) {  // Dacă butonul a fost apăsat și starea s-a schimbat
+        stareModificata = false;  // Resetare flag
 
-    // If the button is pressed, activate the relay and set LED to green
-    if (buttonState == HIGH) {
-        Serial.println("Button Pressed - Relay ON, LED Green");
-        pinMode(RELAY_PIN, OUTPUT);
-        setLEDColor(0, 255, 0);         // Green: Button pressed, relay ON
-    } else {
-        Serial.println("Button Released - Relay OFF, LED Red");
-        pinMode(RELAY_PIN, INPUT);   // Turn OFF the relay
-        setLEDColor(255, 0, 0);         // Red: Button released, relay OFF
+        if (stareReleu) {
+            Serial.println("Releu PORNIT, LED Verde");
+            pinMode(RELEU_PIN, OUTPUT);
+            seteazaCuloareLED(0, 255, 0);  // Verde
+        } else {
+            Serial.println("Releu OPRIT, LED Roșu");
+            pinMode(RELEU_PIN, INPUT);
+            seteazaCuloareLED(255, 0, 0);  // Roșu
+        }
     }
 
-    // Add a small delay to debounce the button
-    delay(50);
+    // loop() rămâne liber și nu consumă CPU inutil
 }
 
-// Function to set the LED color
-void setLEDColor(uint8_t red, uint8_t green, uint8_t blue) {
-    leds[0] = CRGB(red, green, blue);  // Set color for the first LED
-    FastLED.show();  // Update the LED to show the new color
+// Funcție pentru setarea culorii LED-ului
+void seteazaCuloareLED(uint8_t rosu, uint8_t verde, uint8_t albastru) {
+    leduri.setPixelColor(0, leduri.Color(rosu, verde, albastru));
+    leduri.show();
 }

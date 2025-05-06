@@ -2,3 +2,8 @@
 88:13:bf:0d:af:cc COM9
 44:17:93:7c:b2:d0 AI_C
 24:6f:28:95:d6:68 PRAM
+
+Master
+34:cd:b0:d3:88:8c
+Pad
+88:13:bf:0b:87:f4

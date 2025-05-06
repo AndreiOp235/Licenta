@@ -1,0 +1,39 @@
+#
+# Generated backup file, do not edit.
+#
+# Originally at: F:\WIP\Licenta\robotStudio\Solution1\Systems\TEMP\1740424823\backup.655085
+# 2025-02-25  14:55:41
+#
+>>SYSTEM_ID:
+VIRTUAL_USE
+
+>>PRODUCTS_ID:
+RobotWare Version: 6.08.00.00
+
+  RobotWare Base
+  English
+  616-1 PC Interface
+  Drive System IRB 2400
+  ADU-790A in position X3
+  ADU-790A in position Y3
+  ADU-790A in position Z3
+  IRB 2400-10/1.5 Type A
+
+>>HOME:
+All public files and directories
+
+>>SYSPAR:
+SYS.cfg
+PROC.cfg
+MMC.cfg
+EIO.cfg
+SIO.cfg
+MOC.cfg
+
+
+>>TASK1: (T_ROB1,,)
+SYSMOD\user.sys @ 
+PROGMOD\Module1.mod @ 
+
+
+>>EOF:

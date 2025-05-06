@@ -1,0 +1,45 @@
+MODULE Module1
+    CONST robtarget Target_10:=[[818.804543143,0,1822.307621556],[0.499999994,0,0.866025407,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_20:=[[928.612158702,-400,1412.499998927],[0.499999994,0,0.866025407,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    VAR socketdev server;
+    VAR socketdev client;
+    VAR string message;
+    VAR rawbytes data;
+
+    !***********************************************************
+    ! Module:  Module1
+    ! Description:
+    !   Robot moves along Path_10 indefinitely.
+    ! Author: cosaa
+    ! Version: 1.1
+    !***********************************************************
+
+PROC main()
+    
+    SocketCreate server;
+    SocketBind server,"127.0.0.1",5501;
+    SocketListen server;
+    SocketAccept server,client;
+    
+    SocketSend client, \Str:="buna sesaara!";
+    
+    WHILE TRUE DO
+        SocketReceive client, \RawData:=data;
+        UnpackRawBytes data,1, message \ASCII:=1;
+        
+        ! Check if the received message is "R"
+        IF message = "R" THEN
+            TPWrite "Received R, executing action.";
+            Path_10;  ! Call the function to move the robot
+        ENDIF
+        
+    ENDWHILE
+ENDPROC
+
+
+    PROC Path_10()
+        MoveL Target_10,v1000,z100,tool0\WObj:=wobj0;
+        MoveL Target_20,v1000,z100,tool0\WObj:=wobj0;
+    ENDPROC
+
+ENDMODULE
