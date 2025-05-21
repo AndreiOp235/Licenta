@@ -43,8 +43,13 @@ void setup() {
 
 void loop() {
   byteToSend = touchRead(T0); // example byte
-  //Serial.println(byteToSend);
+  Serial.println(byteToSend);
+  /*
   if(abs(byteToSend-medieInt)>10)
     esp_now_send(broadcastAddress, &byteToSend, sizeof(byteToSend));
+  */
+  if(byteToSend<4)
+    esp_now_send(broadcastAddress, &byteToSend, sizeof(byteToSend));
+
   delay(50);
 }

@@ -9579,3 +9579,975 @@ Saving system pool ...
 System pool saved ok!
 Saving controller global pool ... 
 Controller global pool saved ok!
+ image_restore:  No checksum time found. OK.
+Global pool was restored.
+System pool was restored.
+Startmode is WARM
+Chrono configured for 'PC Compatible'
+
+UAS is enabled
+
+Script begin: F:/WIP/Licenta/robotStudio/Solution1/Systems/R2400L/INTERNAL/startup.cmd
+Status 0 from startup_log
+Ignored 0.0.0.0/0 on connector 2
+Ignored 0.0.0.0/0 on connector 3
+F:/WIP/Licenta/robotStudio/Solution1/Systems/TEMP/1740424823 has been mounted.
+Status 0 from baseinit
+Goto to label: VC_SKIP_FIRMWARE_UPGRADE
+Status 0 from ifvc VC_SKIP_FIRMWARE_UPGRADE
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 75923532 from invoke2 BulletinBoardItem_enable_uprobe
+Status 0 from sysdmp_init
+Goto to label: VC_SKIP_SYSDMPTASK
+Status 0 from ifvc VC_SKIP_SYSDMPTASK
+Status 0 from sysdmp_add
+Goto to label: NO_ASCII_LOG
+Status 0 from getkey ASCIILogMedia
+Status 0 from uprobe_init
+Status 0 from sysdmp_add
+Status 0 from setstr $UPROBE_DEF_START
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\service_debug_early.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Goto to label: NO_WVLOG
+Status 0 from ifvc NO_WVLOG
+Goto to label: NO_ETHCAP
+Status 0 from ifvc NO_ETHCAP
+Status 0 from task elogts
+Status 0 from synchronize task
+Status 0 from go task
+Goto to label: VC_NO_REMOTE_DIAGNOSTIC
+Status 0 from ifvc VC_NO_REMOTE_DIAGNOSTIC
+Status 0 from task delay_high
+Status 0 from task delay_medium
+Status 0 from task delay_low
+Goto to label: VC_NO_CLOCK_PROBE
+Status 0 from ifvc VC_NO_CLOCK_PROBE
+
+25-05-14  19:24:11 MC0: type = STATE_CHANGE id = Operational code = 45 (10045)
+
+Status 0 from basenew
+Status 0 from handle_startup_in_sleep_mode
+Status 0 from direxist F:\WIP\Licenta\robotStudio\Solution1\Systems\TEMP\1740424823\rw_trash
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from invoke heartbeatStart
+Status 0 from delay
+Goto to label: NEXT_STEP
+Status 0 from ifvc NEXT_STEP
+Goto to label: VC_NO_MC_PSU_UPGRADE
+Status 0 from ifvc VC_NO_MC_PSU_UPGRADE
+Goto to label: VC_NO_MC_FPGA_UPGRADE
+Status 0 from ifvc VC_NO_MC_FPGA_UPGRADE
+Status 0 from iomgrinstall simFBC
+Status 0 from creat /simfbc/SIM_SIM:
+Status 0 from invoke read_init
+Status 0 from iomgrinstall rccfbc
+Status 0 from creat /rccfbc/LOC_LOC:
+Status 0 from task LOCALBUS
+Status 0 from readparam /LOC_LOC:/bus_read
+Status 0 from iomgrinstall UserSio
+Goto to label: VC_COM1
+Status 0 from ifvc VC_COM1
+Status 0 from echo Installing COM1 device
+Status 0 from creat /usersio/SIO1:
+Goto to label: VC_SKIP_FCI
+Status 0 from ifvc VC_SKIP_FCI
+Status 0 from init eio
+Goto to label: LOAD_CMD
+Status 0 from fileexist C:\Users\cosaa\AppData\Local\ABB Industrial IT\Robotics IT\RobotWare\RobotWare_6.08.0134\options\enms\en_base.cmd
+
+Script begin: C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/options/enms/en_base.cmd
+Status 0 from sysdmp_add
+Status 0 from task tEnip
+Status 0 from task tEnipStack
+Goto to label: REGISTER_DRIVER
+Status 0 from ifvc REGISTER_DRIVER
+Status 0 from invoke incInstallDriver
+Script end: C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/options/enms/en_base.cmd
+Status 0 from include 
+Goto to label: NO_BONJOUR_DAEMON
+Status 0 from ifvc NO_BONJOUR_DAEMON
+Status 0 from invoke2 init_mempools
+Status 0 from task cnmgrts
+Status 0 from task servdisp
+Status 0 from task servlist
+Status 0 from task ctrlsrvts
+Status 0 from task appweb
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\opt_l0.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from python_config
+Status 0 from invoke2 pyrobapi_init
+Status 0 from python_init
+Status 0 from init sio
+Status 0 from init motion
+Status 0 from init rol
+Status 0 from init cab
+Status 0 from init bar
+Status 0 from init pgmrun
+Status 0 from init rapid
+Status 0 from init puscfg
+Status 0 from task alarmts
+Goto to label: VC_CABSUPTS_SKIP
+Status 0 from ifvc VC_CABSUPTS_SKIP
+Status 0 from invoke2 safety_init
+Status 0 from task pstopts
+Status 0 from task rhaltts
+Status 0 from task eiocrsts
+Status 0 from task eiots
+Status 0 from task eioadmts
+Status 0 from task eioEventts
+Status 0 from task deviceTLts
+Status 0 from task deviceTRts
+Status 0 from reconfigure eio
+Status 0 from io_synchronize
+Status 0 from reconfigure sio
+Status 0 from task safevtts
+Status 0 from task safcycts
+Status 0 from task sysevtts
+Status 0 from task ipolts0
+Status 0 from task ipolts1
+Status 0 from task ipolts2
+Status 0 from task ipolts3
+Status 0 from task ipolts4
+Status 0 from task ipolts5
+Status 0 from task ipolts6
+Status 0 from task statmats
+Status 0 from task compliance_masterts
+Status 0 from task sens_memts
+Status 0 from task servots0
+Status 0 from task servots1
+Status 0 from task servots2
+Status 0 from task servots3
+Status 0 from task servots4
+Status 0 from task servots5
+Status 0 from task servots6
+Status 0 from task evhats
+Status 0 from task mcits
+Status 0 from task refmats
+Status 0 from task mocutilts
+Status 0 from task sismats
+Status 0 from task bcalcts
+Status 0 from task logsrvts
+Goto to label: RW_MOTION_END
+Status 0 from ifvc RW_MOTION_END
+Status 0 from task peventts
+Status 0 from task peventts_high
+Status 0 from task rloadts
+Status 0 from task barts
+Status 0 from task rlcomts
+Status 0 from task rlsocketts
+Status 0 from task rlsocketts_rec
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from task rapidts
+Status 0 from task sysorchcompts
+Status 0 from task sysorchts
+Status 0 from task sysorchhookts
+Status 0 from task cabts
+Status 0 from task mocts
+Status 0 from task hpjts
+Status 0 from task rapidlowts
+Status 0 from task sysreadts
+Status 0 from task rwssubsc_worker
+Status 0 from task filesrv
+Status 0 from task rwssubsc
+Status 0 from task subscription
+Status 0 from task rws_dipc
+Status 0 from task rapi_user
+Status 0 from task rwservice
+Goto to label: VC_NETCMD_SKIP
+Status 0 from ifvc VC_NETCMD_SKIP
+Status 0 from synchronize task
+Status 0 from delay
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Rapi-Subscription running on slot: 197
+Status 0 from go task
+Goto to label: VC_AXC_SKIP
+Status 0 from ifvc VC_AXC_SKIP
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\option.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Goto to label: VC_AXC_SKIP
+Status 0 from ifvc VC_AXC_SKIP
+Simulated moc_io.
+STATMATS. New relay: rob1_run
+STATMATS. New relay: rob1_run2
+STATMATS. New motion_planner: motion_planner_1
+STATMATS. New motion_planner: motion_planner_2
+STATMATS. New motion_planner: motion_planner_3
+STATMATS. New motion_planner: motion_planner_4
+STATMATS. New motion_planner: motion_planner_5
+STATMATS. New motion_planner: motion_planner_6
+STATMATS. New motion_planner: motion_planner_7
+SISMS_BS_INFO 40336
+Status 0 from new motion
+Status 0 from delay
+Status 0 from connect_dependings SYS_STORED_OBJ_CAB
+Status 0 from if SYNCROB
+Goto to label: NOSYNC
+Status 0 from goto NOSYNC
+Status 0 from synchronize task
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Status 0 from go task
+Status 0 from io_synchronize
+Status 0 from invoke rldryrun_start
+Status 0 from invoke rlcyclic_start
+Status 13 from invoke rlvisualize_start
+Status 0 from new rapid
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\opt_l1.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+(safevtts): SYS STOP from d:\workspaces\robotsoftware\kernel\6.08.00.xx\areas\safety\components\runchn\runchn.c,3571
+
+25-05-14  19:24:15 MC0: type = STATE_CHANGE id = Operational code = 12 (10012)
+
+
+25-05-14  19:24:15 MC0: type = STATE_CHANGE id = Operational code = 15 (10015)
+
+Status 0 from new cab
+
+25-05-14  19:24:15 MC0: type = STATE_CHANGE id = Operational code = 155 (10155)
+arg 0: 1 
+arg 1: T_ROB1
+
+Status 0 from invoke2 set_max_allowed_robapi_wan_connections
+
+25-05-14  19:24:15 MC0: type = STATE_CHANGE id = Operational code = 129 (10129)
+arg 0: 1 
+arg 1: T_ROB1
+
+Status 0 from task robdispts
+Status 0 from task robesuts
+Status 0 from task robesuts_p
+Status 0 from task robesuts_hp
+Status 0 from task robcmdts
+Status 0 from task robayats
+Status 0 from task robrspts
+Status 0 from task robmasts
+Status 0 from task dipcts
+Status 0 from task streamts
+Status 0 from task stream_readts1
+Status 0 from task stream_readts2
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\opt_l2.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from task ns_send
+Goto to label: NETSCANSKIP
+Status 0 from ifvc NETSCANSKIP
+Status 0 from synchronize task
+Status 0 from rapid_startup_ready
+Status 0 from cab_startup_ready
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Status 0 from go task
+Goto to label: CHANREF
+Status 0 from ifvc CHANREF
+Goto to label: VTSPEED
+Status 0 from ifvc VTSPEED
+Status 0 from invoke VTSetSpeed
+Goto to label: VCSHELL
+Status 0 from ifvc VCSHELL
+Status 0 from task vcshell
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\opt_l3.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from upgrade_warm_start_completed
+Status 0 from unofficial_rw_notification
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from ifstr UPROBE_DEF_SKIP
+
+Script begin: C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/system/uprobe_default_start.cmd
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Script end: C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/system/uprobe_default_start.cmd
+Status 0 from include C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/system/uprobe_default_start.cmd
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\service_debug.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Goto to label: NEXT_STEP
+Status 0 from ifvc NEXT_STEP
+Goto to label: NEXT_STEP
+Status 0 from ifvc NEXT_STEP
+Status 0 from invoke RobotWare_Memory_Pool_AddAllPoolsToDevices
+Status 0 from systemrun
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\post_startup_action.cmd
+Goto to label: NO_POST_ACTION
+Status 0 from goto NO_POST_ACTION
+Goto to label: NO_ERROR
+Status 0 from goto NO_ERROR
+Script end: F:/WIP/Licenta/robotStudio/Solution1/Systems/R2400L/INTERNAL/startup.cmd
+
+=============  Startup ready =============
+
+25-05-14  19:24:17 MC0: type = STATE_CHANGE id = Operational code = 16 (10016)
+
+
+25-05-14  19:24:17 MC0: type = STATE_CHANGE id = Operational code = 17 (10017)
+
+
+25-05-14  19:24:17 MC0: type = STATE_CHANGE id = Operational code = 140 (10140)
+arg 0: 100 
+arg 1: Default User
+
+
+25-05-14  19:24:17 MC0: type = STATE_CHANGE id = Operational code = 10 (10010)
+
+[ROBRSP] <Got storage pointer 0x49eb4840>
+
+25-05-14  19:24:20 MC0: type = STATE_CHANGE id = Operational code = 11 (10011)
+
+
+25-05-14  19:24:56 MC0: type = STATE_CHANGE id = Operational code = 52 (10052)
+arg 0: 0 
+
+25-05-14  19:24:56 MC0: type = STATE_CHANGE id = Operational code = 53 (10053)
+arg 0: 0 
+
+25-05-14  19:24:56 MC0: type = STATE_CHANGE id = Operational code = 156 (10156)
+arg 0: 1 
+arg 1: T_ROB1
+
+
+25-05-14  19:24:57 MC0: type = WARNING id = Program code = 1574 (41574)
+
+arg 0: T_ROB1
+
+arg 1: /Module1/main/SocketReceive/31
+
+arg 2: ERR_SOCK_CLOSED
+
+
+25-05-14  19:24:57 MC0: type = ERROR id = Program code = 1574 (41574)
+
+arg 0: T_ROB1
+
+arg 1: /Module1/main/SocketReceive/31
+
+arg 2: ERR_SOCK_CLOSED
+
+
+25-05-14  19:24:57 MC0: type = ERROR id = Program code = 228 (40228)
+
+arg 0: T_ROB1
+arg 1: 41574 
+
+25-05-14  19:24:57 MC0: type = STATE_CHANGE id = Operational code = 20 (10020)
+arg 0: 1 
+arg 1: T_ROB1
+
+
+25-05-14  19:24:57 MC0: type = STATE_CHANGE id = Operational code = 126 (10126)
+arg 0: 1 
+arg 1: T_ROB1
+
+ image_restore:  No checksum time found. OK.
+Global pool was restored.
+System pool was restored.
+Startmode is WARM
+Chrono configured for 'PC Compatible'
+
+UAS is enabled
+
+Script begin: F:/WIP/Licenta/robotStudio/Solution1/Systems/R2400L/INTERNAL/startup.cmd
+Status 0 from startup_log
+Ignored 0.0.0.0/0 on connector 2
+Ignored 0.0.0.0/0 on connector 3
+F:/WIP/Licenta/robotStudio/Solution1/Systems/TEMP/1740424823 has been mounted.
+Status 0 from baseinit
+Goto to label: VC_SKIP_FIRMWARE_UPGRADE
+Status 0 from ifvc VC_SKIP_FIRMWARE_UPGRADE
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 0 from bb_populate
+Status 77037644 from invoke2 BulletinBoardItem_enable_uprobe
+Status 0 from sysdmp_init
+Goto to label: VC_SKIP_SYSDMPTASK
+Status 0 from ifvc VC_SKIP_SYSDMPTASK
+Status 0 from sysdmp_add
+Goto to label: NO_ASCII_LOG
+Status 0 from getkey ASCIILogMedia
+Status 0 from uprobe_init
+Status 0 from sysdmp_add
+Status 0 from setstr $UPROBE_DEF_START
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\service_debug_early.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Goto to label: NO_WVLOG
+Status 0 from ifvc NO_WVLOG
+Goto to label: NO_ETHCAP
+Status 0 from ifvc NO_ETHCAP
+Status 0 from task elogts
+Status 0 from synchronize task
+Status 0 from go task
+Goto to label: VC_NO_REMOTE_DIAGNOSTIC
+Status 0 from ifvc VC_NO_REMOTE_DIAGNOSTIC
+Status 0 from task delay_high
+Status 0 from task delay_medium
+Status 0 from task delay_low
+Goto to label: VC_NO_CLOCK_PROBE
+Status 0 from ifvc VC_NO_CLOCK_PROBE
+
+25-05-21  20:23:55 MC0: type = STATE_CHANGE id = Operational code = 45 (10045)
+
+Status 0 from basenew
+Status 0 from handle_startup_in_sleep_mode
+Status 0 from direxist F:\WIP\Licenta\robotStudio\Solution1\Systems\TEMP\1740424823\rw_trash
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from invoke heartbeatStart
+Status 0 from delay
+Goto to label: NEXT_STEP
+Status 0 from ifvc NEXT_STEP
+Goto to label: VC_NO_MC_PSU_UPGRADE
+Status 0 from ifvc VC_NO_MC_PSU_UPGRADE
+Goto to label: VC_NO_MC_FPGA_UPGRADE
+Status 0 from ifvc VC_NO_MC_FPGA_UPGRADE
+Status 0 from iomgrinstall simFBC
+Status 0 from creat /simfbc/SIM_SIM:
+Status 0 from invoke read_init
+Status 0 from iomgrinstall rccfbc
+Status 0 from creat /rccfbc/LOC_LOC:
+Status 0 from task LOCALBUS
+Status 0 from readparam /LOC_LOC:/bus_read
+Status 0 from iomgrinstall UserSio
+Goto to label: VC_COM1
+Status 0 from ifvc VC_COM1
+Status 0 from echo Installing COM1 device
+Status 0 from creat /usersio/SIO1:
+Goto to label: VC_SKIP_FCI
+Status 0 from ifvc VC_SKIP_FCI
+Status 0 from init eio
+Goto to label: LOAD_CMD
+Status 0 from fileexist C:\Users\cosaa\AppData\Local\ABB Industrial IT\Robotics IT\RobotWare\RobotWare_6.08.0134\options\enms\en_base.cmd
+
+Script begin: C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/options/enms/en_base.cmd
+Status 0 from sysdmp_add
+Status 0 from task tEnip
+Status 0 from task tEnipStack
+Goto to label: REGISTER_DRIVER
+Status 0 from ifvc REGISTER_DRIVER
+Status 0 from invoke incInstallDriver
+Script end: C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/options/enms/en_base.cmd
+Status 0 from include 
+Goto to label: NO_BONJOUR_DAEMON
+Status 0 from ifvc NO_BONJOUR_DAEMON
+Status 0 from invoke2 init_mempools
+Status 0 from task cnmgrts
+Status 0 from task servdisp
+Status 0 from task servlist
+Status 0 from task ctrlsrvts
+Status 0 from task appweb
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\opt_l0.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from python_config
+Status 0 from invoke2 pyrobapi_init
+Status 0 from python_init
+Status 0 from init sio
+Status 0 from init motion
+Status 0 from init rol
+Status 0 from init cab
+Status 0 from init bar
+Status 0 from init pgmrun
+Status 0 from init rapid
+Status 0 from init puscfg
+Status 0 from task alarmts
+Goto to label: VC_CABSUPTS_SKIP
+Status 0 from ifvc VC_CABSUPTS_SKIP
+Status 0 from invoke2 safety_init
+Status 0 from task pstopts
+Status 0 from task rhaltts
+Status 0 from task eiocrsts
+Status 0 from task eiots
+Status 0 from task eioadmts
+Status 0 from task eioEventts
+Status 0 from task deviceTLts
+Status 0 from task deviceTRts
+Status 0 from reconfigure eio
+Status 0 from io_synchronize
+Status 0 from reconfigure sio
+Status 0 from task safevtts
+Status 0 from task safcycts
+Status 0 from task sysevtts
+Status 0 from task ipolts0
+Status 0 from task ipolts1
+Status 0 from task ipolts2
+Status 0 from task ipolts3
+Status 0 from task ipolts4
+Status 0 from task ipolts5
+Status 0 from task ipolts6
+Status 0 from task statmats
+Status 0 from task compliance_masterts
+Status 0 from task sens_memts
+Status 0 from task servots0
+Status 0 from task servots1
+Status 0 from task servots2
+Status 0 from task servots3
+Status 0 from task servots4
+Status 0 from task servots5
+Status 0 from task servots6
+Status 0 from task evhats
+Status 0 from task mcits
+Status 0 from task refmats
+Status 0 from task mocutilts
+Status 0 from task sismats
+Status 0 from task bcalcts
+Status 0 from task logsrvts
+Goto to label: RW_MOTION_END
+Status 0 from ifvc RW_MOTION_END
+Status 0 from task peventts
+Status 0 from task peventts_high
+Status 0 from task rloadts
+Status 0 from task barts
+Status 0 from task rlcomts
+Status 0 from task rlsocketts
+Status 0 from task rlsocketts_rec
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from task rapidts
+Status 0 from task sysorchcompts
+Status 0 from task sysorchts
+Status 0 from task sysorchhookts
+Status 0 from task cabts
+Status 0 from task mocts
+Status 0 from task hpjts
+Status 0 from task rapidlowts
+Status 0 from task sysreadts
+Status 0 from task rwssubsc_worker
+Status 0 from task filesrv
+Status 0 from task rwssubsc
+Status 0 from task subscription
+Status 0 from task rws_dipc
+Status 0 from task rapi_user
+Status 0 from task rwservice
+Goto to label: VC_NETCMD_SKIP
+Status 0 from ifvc VC_NETCMD_SKIP
+Status 0 from synchronize task
+Status 0 from delay
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Rapi-Subscription running on slot: 197
+Status 0 from go task
+Goto to label: VC_AXC_SKIP
+Status 0 from ifvc VC_AXC_SKIP
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\option.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Goto to label: VC_AXC_SKIP
+Status 0 from ifvc VC_AXC_SKIP
+Simulated moc_io.
+STATMATS. New relay: rob1_run
+STATMATS. New relay: rob1_run2
+STATMATS. New motion_planner: motion_planner_1
+STATMATS. New motion_planner: motion_planner_2
+STATMATS. New motion_planner: motion_planner_3
+STATMATS. New motion_planner: motion_planner_4
+STATMATS. New motion_planner: motion_planner_5
+STATMATS. New motion_planner: motion_planner_6
+STATMATS. New motion_planner: motion_planner_7
+SISMS_BS_INFO 40336
+Status 0 from new motion
+Status 0 from delay
+Status 0 from connect_dependings SYS_STORED_OBJ_CAB
+Status 0 from if SYNCROB
+Goto to label: NOSYNC
+Status 0 from goto NOSYNC
+Status 0 from synchronize task
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Status 0 from go task
+Status 0 from io_synchronize
+Status 0 from invoke rldryrun_start
+Status 0 from invoke rlcyclic_start
+Status 13 from invoke rlvisualize_start
+Status 0 from new rapid
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\opt_l1.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+(safevtts): SYS STOP from d:\workspaces\robotsoftware\kernel\6.08.00.xx\areas\safety\components\runchn\runchn.c,3571
+
+25-05-21  20:24:00 MC0: type = STATE_CHANGE id = Operational code = 12 (10012)
+
+
+25-05-21  20:24:00 MC0: type = STATE_CHANGE id = Operational code = 15 (10015)
+
+Status 0 from new cab
+
+25-05-21  20:24:00 MC0: type = STATE_CHANGE id = Operational code = 155 (10155)
+arg 0: 1 
+arg 1: T_ROB1
+
+Status 0 from invoke2 set_max_allowed_robapi_wan_connections
+
+25-05-21  20:24:00 MC0: type = STATE_CHANGE id = Operational code = 129 (10129)
+arg 0: 1 
+arg 1: T_ROB1
+
+Status 0 from task robdispts
+Status 0 from task robesuts
+Status 0 from task robesuts_p
+Status 0 from task robesuts_hp
+Status 0 from task robcmdts
+Status 0 from task robayats
+Status 0 from task robrspts
+Status 0 from task robmasts
+Status 0 from task dipcts
+Status 0 from task streamts
+Status 0 from task stream_readts1
+Status 0 from task stream_readts2
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\opt_l2.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from task ns_send
+Goto to label: NETSCANSKIP
+Status 0 from ifvc NETSCANSKIP
+Status 0 from synchronize task
+Status 0 from rapid_startup_ready
+Status 0 from cab_startup_ready
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+Status 0 from go task
+Goto to label: CHANREF
+Status 0 from ifvc CHANREF
+Goto to label: VTSPEED
+Status 0 from ifvc VTSPEED
+Status 0 from invoke VTSetSpeed
+Goto to label: VCSHELL
+Status 0 from ifvc VCSHELL
+Status 0 from task vcshell
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\opt_l3.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from upgrade_warm_start_completed
+Status 0 from unofficial_rw_notification
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Status 0 from sysdmp_add
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_trigger_add
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from sysdmp_add_logfile
+Status 0 from ifstr UPROBE_DEF_SKIP
+
+Script begin: C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/system/uprobe_default_start.cmd
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Status 0 from uprobe_set_mask
+Script end: C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/system/uprobe_default_start.cmd
+Status 0 from include C:/Users/cosaa/AppData/Local/ABB Industrial IT/Robotics IT/RobotWare/RobotWare_6.08.0134/system/uprobe_default_start.cmd
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\service_debug.cmd
+Goto to label: NEXT_STEP
+Status 0 from goto NEXT_STEP
+Goto to label: NEXT_STEP
+Status 0 from ifvc NEXT_STEP
+Goto to label: NEXT_STEP
+Status 0 from ifvc NEXT_STEP
+Status 0 from invoke RobotWare_Memory_Pool_AddAllPoolsToDevices
+Status 0 from systemrun
+Status 0 from fileexist F:\WIP\Licenta\robotStudio\Solution1\Systems\R2400L\INTERNAL\post_startup_action.cmd
+Goto to label: NO_POST_ACTION
+Status 0 from goto NO_POST_ACTION
+Goto to label: NO_ERROR
+Status 0 from goto NO_ERROR
+Script end: F:/WIP/Licenta/robotStudio/Solution1/Systems/R2400L/INTERNAL/startup.cmd
+
+=============  Startup ready =============
+
+25-05-21  20:24:01 MC0: type = STATE_CHANGE id = Operational code = 16 (10016)
+
+
+25-05-21  20:24:01 MC0: type = STATE_CHANGE id = Operational code = 17 (10017)
+
+
+25-05-21  20:24:01 MC0: type = STATE_CHANGE id = Operational code = 140 (10140)
+arg 0: 100 
+arg 1: Default User
+
+
+25-05-21  20:24:01 MC0: type = STATE_CHANGE id = Operational code = 10 (10010)
+
+[ROBRSP] <Got storage pointer 0x49eb4840>
+
+25-05-21  20:24:05 MC0: type = STATE_CHANGE id = Operational code = 11 (10011)
+
+
+25-05-21  20:24:10 MC0: type = STATE_CHANGE id = Operational code = 40 (10040)
+arg 0: 0 arg 1: 0 
+arg 2: T_ROB1
+arg 3: 37798436 arg 4: 1840 
+
+25-05-21  20:24:10 MC0: type = STATE_CHANGE id = Operational code = 2 (10002)
+arg 0: 1 arg 1: 0 
+arg 2: T_ROB1
+
+
+25-05-21  20:24:10 MC0: type = STATE_CHANGE id = Operational code = 79 (10079)
+
+arg 0: RsTempModule
+
+arg 1: T_ROB1
+arg 2: 1 
+arg 3: Default User
+
+
+25-05-21  20:24:10 MC0: type = STATE_CHANGE id = Operational code = 63 (10063)
+
+arg 0: RsTempModule
+
+arg 1: T_ROB1
+
+
+25-05-21  20:24:11 MC0: type = STATE_CHANGE id = Operational code = 149 (10149)
+
+arg 0: T_ROB1
+
+arg 1: RsTempPath
+
+arg 2: Default User
+
+
+25-05-21  20:24:11 MC0: type = STATE_CHANGE id = Operational code = 52 (10052)
+arg 0: 0 
+
+25-05-21  20:24:11 MC0: type = STATE_CHANGE id = Operational code = 53 (10053)
+arg 0: 0 
+
+25-05-21  20:24:11 MC0: type = STATE_CHANGE id = Operational code = 151 (10151)
+arg 0: 1 
+arg 1: T_ROB1
+
+
+25-05-21  20:24:12 MC0: type = WARNING id = Motion code = 24 (50024)
+
+arg 0: T_ROB1
+
+arg 1: /RsTempModule/RsTempPath/MoveL/6
+
+
+25-05-21  20:24:12 MC0: type = STATE_CHANGE id = Operational code = 122 (10122)
+arg 0: 1 
+arg 1: T_ROB1
+
+
+25-05-21  20:24:14 MC0: type = STATE_CHANGE id = Operational code = 2 (10002)
+arg 0: 1 arg 1: 0 
+arg 2: T_ROB1
+
+
+25-05-21  20:24:14 MC0: type = STATE_CHANGE id = Operational code = 64 (10064)
+
+arg 0: RsTempModule
+
+arg 1: T_ROB1
+
+
+25-05-21  20:24:17 MC0: type = STATE_CHANGE id = Operational code = 40 (10040)
+arg 0: 0 arg 1: 0 
+arg 2: T_ROB1
+arg 3: 37798436 arg 4: 1840 
+
+25-05-21  20:24:17 MC0: type = STATE_CHANGE id = Operational code = 79 (10079)
+
+arg 0: RsTempModule
+
+arg 1: T_ROB1
+arg 2: 1 
+arg 3: Default User
+
+
+25-05-21  20:24:17 MC0: type = STATE_CHANGE id = Operational code = 63 (10063)
+
+arg 0: RsTempModule
+
+arg 1: T_ROB1
+
+
+25-05-21  20:24:18 MC0: type = STATE_CHANGE id = Operational code = 149 (10149)
+
+arg 0: T_ROB1
+
+arg 1: RsTempPath
+
+arg 2: Default User
+
+
+25-05-21  20:24:18 MC0: type = STATE_CHANGE id = Operational code = 52 (10052)
+arg 0: 0 
+
+25-05-21  20:24:18 MC0: type = STATE_CHANGE id = Operational code = 53 (10053)
+arg 0: 0 
+
+25-05-21  20:24:18 MC0: type = STATE_CHANGE id = Operational code = 151 (10151)
+arg 0: 1 
+arg 1: T_ROB1
+
+
+25-05-21  20:24:19 MC0: type = WARNING id = Motion code = 24 (50024)
+
+arg 0: T_ROB1
+
+arg 1: /RsTempModule/RsTempPath/MoveL/6
+
+
+25-05-21  20:24:20 MC0: type = STATE_CHANGE id = Operational code = 122 (10122)
+arg 0: 1 
+arg 1: T_ROB1
+
+
+25-05-21  20:24:21 MC0: type = STATE_CHANGE id = Operational code = 2 (10002)
+arg 0: 1 arg 1: 0 
+arg 2: T_ROB1
+
+
+25-05-21  20:24:21 MC0: type = STATE_CHANGE id = Operational code = 64 (10064)
+
+arg 0: RsTempModule
+
+arg 1: T_ROB1
+
+Information stream shutdown
+
+25-05-21  21:03:24 MC0: type = STATE_CHANGE id = Operational code = 56 (10056)
+
+pf_execute: Starting the shutdown sequence...
+(pfExec): SYS HALT from d:\workspaces\robotsoftware\kernel\6.08.00.xx\areas\sup\components\baseroot\baseroot.c,3813
+pf_execute: Hooks done
+Saving system pool ... 
+System pool saved ok!
+Saving controller global pool ... 
+Controller global pool saved ok!
