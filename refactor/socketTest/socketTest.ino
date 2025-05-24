@@ -42,6 +42,7 @@ void OnDataRecv(const esp_now_recv_info_t *recvInfo, const uint8_t *data, int le
 
     /**/
     // Send MAC address to server
+    connectToWiFi();
     WiFiClient client;
     if (client.connect("192.168.50.192", 6000)) {
       char macStr[18];
@@ -73,7 +74,7 @@ void setup() {
   strip.Show(); // Initialize off
   Serial.begin(115200);
   WiFi.mode(WIFI_STA);
-  connectToWiFi();
+  
   if (esp_now_init() != ESP_OK) {
     Serial.println("Error initializing ESP-NOW");
     return;

@@ -13,8 +13,8 @@ RgbColor color1,color2;
 
 void setup() {
   Serial.begin(115200);
-  color1 =RgbColor(0, 0, 25);
-  color2 =RgbColor(0, 25, 0);
+  color1 =RgbColor(0, 0, 255);
+  color2 =RgbColor(0, 255, 0);
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
 

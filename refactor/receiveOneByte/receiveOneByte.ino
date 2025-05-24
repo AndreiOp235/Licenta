@@ -13,12 +13,12 @@ void OnDataRecv(const esp_now_recv_info_t *recvInfo, const uint8_t *data, int le
 //  if(data[0]>40)
   {
     pinMode(relay, pornit);
-    RgbColor color =RgbColor(0, 1, 0);
+    RgbColor color =RgbColor(0, 255, 0);
     strip.SetPixelColor(0, color);
     strip.Show(); // Initialize off
     delay(1000);
     pinMode(relay, oprit);
-    color =RgbColor(1, 0, 0);
+    color =RgbColor(255, 0, 0);
     strip.SetPixelColor(0, color);
     strip.Show(); // Initialize off
   }
@@ -28,7 +28,7 @@ void OnDataRecv(const esp_now_recv_info_t *recvInfo, const uint8_t *data, int le
 void setup() {
   pinMode(relay, oprit);
   strip.Begin();
-  RgbColor color =RgbColor(0, 0, 1);
+  RgbColor color =RgbColor(0, 0, 255);
   strip.SetPixelColor(0, color);
   strip.Show(); // Initialize off
   Serial.begin(115200);
