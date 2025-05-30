@@ -7,7 +7,7 @@ NeoPixelBus<NeoGrbFeature, NeoEsp32Rmt0Ws2812xMethod> strip(1, pixelPin);
 // Replace with the MAC address of your receiver
 uint8_t broadcastAddress[] = {0x34, 0xcd, 0xb0, 0xd3, 0x88, 0x8c};
 float medie=0;
-uint8_t byteToSend,medieInt;
+uint8_t byteToSend,medieInt,pin15,pin32;
 RgbColor color1,color2;
 
 
@@ -50,11 +50,20 @@ void setup() {
 }
 
 void loop() {
-  byteToSend = touchRead(15); // example byte
-  Serial.println(byteToSend);
-  if(abs(byteToSend-medieInt)>10)
+  pin15= touchRead(15); // example byte
+  pin32= touchRead(32); // example byte
+  Serial.print("D15: ");
+  Serial.println(pin15);
+  Serial.print("D32: ");
+  Serial.println(pin32);
+  if(abs(pin15-medieInt)>10)
+    byteToSend=15;
+  else if(pin32<4)
+    byteToSend=32;
+  else
+    byteToSend=0;
 
-  if(abs(byteToSend-medieInt)>10)
+  if(byteToSend)
   {
     esp_now_send(broadcastAddress, &byteToSend, sizeof(byteToSend));
     strip.SetPixelColor(0, color2);
@@ -64,5 +73,5 @@ void loop() {
     strip.Show(); // Initialize off
   }
     
-  delay(50);
+  //delay(50);
 }

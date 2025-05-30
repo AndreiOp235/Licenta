@@ -16,6 +16,7 @@ void OnDataRecv(const esp_now_recv_info_t *recvInfo, const uint8_t *data, int le
     RgbColor color =RgbColor(0, 255, 0);
     strip.SetPixelColor(0, color);
     strip.Show(); // Initialize off
+    Serial.println(data[0]);
     delay(1000);
     pinMode(relay, oprit);
     color =RgbColor(255, 0, 0);

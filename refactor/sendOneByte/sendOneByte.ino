@@ -51,5 +51,5 @@ void loop() {
   if(byteToSend<4)
     esp_now_send(broadcastAddress, &byteToSend, sizeof(byteToSend));
 
-  delay(50);
+  //delay(500);
 }
